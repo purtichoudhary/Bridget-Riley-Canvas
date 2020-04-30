@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styling.css">
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <!-- <script type="text/javasript" src="box.js"></script> -->
+
+    <script>
+        var theCanvas = document.getElementById("myCanvas");
+        theCanvas.width = window.innerWidth;
+        theCanvas.height = window.innerHeight;
+        var c = theCanvas.getContext("2d");
+
+        
+        c.lineWidth = 1;
+        var initXD = 0;
+        var initYD = 0;
+        var initYU = 0;
+        var initXU = 0;
+        var count = 1;
+
+        for (var j = 1; (initYU <= theCanvas.height && initYU >= 0) || (initYD <= theCanvas.height && initYD >= 0); j++) {
+            var xd = initXD ;
+            var yd = initYD ;
+            var xu = initXU ;
+            var yu = initYU ;
+            for (var i = 1; (xu <= theCanvas.width ) || (xd <= theCanvas.width ); i++) {
+                c.beginPath();
+                c.moveTo(xd, yd);
+                c.lineTo(xd + 70, yd);
+                c.lineTo(xd + 70, yd - 70);
+                c.lineTo(xd + 140, yd - 70);
+                c.lineTo(xd + 140, yd);
+                c.lineTo(xd + 210, yd);
+                c.lineTo(xd + 210, yd + 70);
+                c.lineTo(xd + 140, yd + 70);
+                c.lineTo(xd + 140, yd + 140);
+                c.lineTo(xd + 70, yd + 140);
+                c.lineTo(xd + 70, yd + 70);
+                c.lineTo(xd, yd + 70);
+                c.closePath();
+
+                if (j % 2 != 0) {
+                    if (count == 3) {
+                        c.fillStyle = 'rgb(33, 1, 48)';
+                        count = 0;
+                    }
+                    else if (count == 2)
+                        c.fillStyle = 'rgb(214, 94, 50)';
+                    else
+                        c.fillStyle = 'green';
+                } else {
+                    if (count == 3) {
+                        c.fillStyle = 'yellow';
+                        count = 0;
+                    }
+                    else if (count == 2)
+                        c.fillStyle = 'rgb(13, 76, 105)';
+                    else
+                        c.fillStyle = 'red';
+                }
+                c.fill();
+
+                c.beginPath();
+                c.moveTo(xu, yu);
+                c.lineTo(xu + 70, yu);
+                c.lineTo(xu + 70, yu - 70);
+                c.lineTo(xu + 140, yu - 70);
+                c.lineTo(xu + 140, yu);
+                c.lineTo(xu + 210, yu);
+                c.lineTo(xu + 210, yu + 70);
+                c.lineTo(xu + 140, yu + 70);
+                c.lineTo(xu + 140, yu + 140);
+                c.lineTo(xu + 70, yu + 140);
+                c.lineTo(xu + 70, yu + 70);
+                c.lineTo(xu, yu + 70);
+                c.closePath();
+                c.fill();
+
+                xu = xu + 140;
+                yu = yu + 70;
+                xd = xd + 140;
+                yd = yd + 70;
+                count++;
+            }
+            initXD -= 70;
+            initYD += 140;
+
+            initXU += 70;
+            initYU -= 140;
+        }
+    </script>
+</body>
+
+</html>
